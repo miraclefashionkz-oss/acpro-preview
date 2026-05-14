@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AC PRO — AI-помощник продаж для 1С и Битрикс24. Аналоги и маржа в 1С для менеджера. Дашборд упущенных сделок в Б24 для РОПа. Подписка от 75 000 ₸/мес.">
+<meta name="description" content="AC PRO — AI-помощник продаж. Модуль для 1С (аналоги и маржа для менеджера), модуль для Битрикс24 (дашборд РОПа). Возьмите один или Bundle. Подписка от 55 000 ₸/мес.">
 <title>AC PRO — AI-помощник продаж в 1С и Битрикс24</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -136,12 +136,69 @@ section.dark .btn-secondary:hover{background:#1a2030}
   font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;
   color:var(--text-muted);margin:14px 0 8px;
 }
-.mock-placeholder{
-  flex:1;display:flex;align-items:center;justify-content:center;color:var(--text-muted);
-  font-size:13px;text-align:center;padding:16px;
+
+/* Bridge (block 2 — before tabs) */
+.bridge-table-wrap{margin-top:32px;overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border)}
+table.bridge{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff}
+table.bridge th,table.bridge td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+table.bridge th{background:var(--bg-alt);font-weight:600;color:var(--text);font-size:13px;text-transform:uppercase;letter-spacing:0.04em}
+table.bridge tr:last-child td{border-bottom:none}
+table.bridge td.pain{color:var(--text);font-weight:500}
+table.bridge td.module{white-space:nowrap}
+.module-pill{
+  display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);
+}
+.module-pill.b24{background:#fef3c7;color:#92400e}
+.module-pill.both{background:#dcfce7;color:#15803d}
+table.bridge td.fn{color:var(--text-muted)}
+.bridge-tail{margin-top:18px;color:var(--text-muted);font-size:14px;max-width:780px}
+
+/* TABS (tablist) */
+.tabs-wrap{
+  position:sticky;top:64px;z-index:40;background:rgba(255,255,255,.95);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:14px 0;
+}
+.tabs{
+  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+}
+.tab{
+  display:inline-flex;align-items:center;gap:10px;padding:13px 22px;
+  background:#fff;border:1px solid var(--border);border-radius:999px;
+  font-weight:600;font-size:15px;color:var(--text);cursor:pointer;
+  font-family:inherit;transition:all .15s ease;line-height:1;
+  white-space:nowrap;
+}
+.tab:hover{background:var(--bg-alt);text-decoration:none}
+.tab[aria-selected="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab[aria-selected="true"]:hover{background:var(--accent-hover)}
+.tab .tab-badge{
+  font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;
+  background:rgba(255,255,255,.18);color:inherit;letter-spacing:0.04em;text-transform:uppercase;
+}
+.tab[aria-selected="false"] .tab-badge.best{
+  background:#dcfce7;color:#15803d;
+}
+.tab[aria-selected="true"] .tab-badge.best{
+  background:rgba(255,255,255,.22);color:#fff;
+}
+@media(max-width:760px){
+  .tabs{
+    flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
+    padding:0 24px;margin:0 -24px;
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex-shrink:0;padding:11px 18px;font-size:14px}
 }
 
-/* Pain (block 2) */
+/* Tabpanel */
+.tabpanel{display:none}
+.tabpanel.active{display:block}
+
+/* Pain (in tabpanel) */
 .pain-group{margin-top:40px}
 .pain-group + .pain-group{margin-top:48px}
 .pain-group-head{
@@ -171,24 +228,7 @@ section.dark .btn-secondary:hover{background:#1a2030}
 .pain-card p{font-size:14.5px;line-height:1.55;margin:0}
 .pain-tail{margin-top:36px;color:var(--text-muted);font-size:15px;max-width:860px}
 
-/* Pain → Module bridge (block 3.5) */
-.bridge-table-wrap{margin-top:32px;overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border)}
-table.bridge{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff}
-table.bridge th,table.bridge td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
-table.bridge th{background:var(--bg-alt);font-weight:600;color:var(--text);font-size:13px;text-transform:uppercase;letter-spacing:0.04em}
-table.bridge tr:last-child td{border-bottom:none}
-table.bridge td.pain{color:var(--text);font-weight:500}
-table.bridge td.module{white-space:nowrap}
-.module-pill{
-  display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;
-  background:var(--accent-soft);color:var(--accent);
-}
-.module-pill.b24{background:#fef3c7;color:#92400e}
-.module-pill.both{background:#dcfce7;color:#15803d}
-table.bridge td.fn{color:var(--text-muted)}
-.bridge-tail{margin-top:18px;color:var(--text-muted);font-size:14px;max-width:780px}
-
-/* Modules (block 3 split) */
+/* Modules */
 .module-block{margin-top:48px}
 .module-block + .module-block{margin-top:64px}
 .module-head{
@@ -220,7 +260,36 @@ table.bridge td.fn{color:var(--text-muted)}
 .shared-card h3{color:var(--text-on-dark);margin-bottom:6px;font-size:17px}
 .shared-card p{color:var(--text-on-dark-muted);font-size:14.5px;margin:0}
 
-/* B24 dashboard mock (inside block 3) */
+/* Bundle perks block */
+.bundle-perks{
+  margin-top:48px;padding:28px 32px;border-radius:var(--radius-lg);
+  background:linear-gradient(135deg,rgba(34,197,94,.10),rgba(37,99,235,.10));
+  border:1px solid rgba(34,197,94,.28);
+}
+.bundle-perks-head{
+  display:flex;align-items:baseline;gap:12px;margin-bottom:18px;flex-wrap:wrap;
+}
+.bundle-perks-tag{
+  font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  background:#dcfce7;color:#15803d;padding:4px 12px;border-radius:999px;
+}
+.bundle-perks h3{color:var(--text-on-dark);margin:0;font-size:20px}
+.bundle-perks-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:760px){.bundle-perks-grid{grid-template-columns:1fr}}
+.perk{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);
+  border-radius:var(--radius);padding:18px 20px;
+}
+.perk-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.perk-ico{
+  width:32px;height:32px;border-radius:8px;background:rgba(34,197,94,.18);
+  color:#86efac;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;
+}
+.perk h4{color:var(--text-on-dark);margin:0;font-size:16px}
+.perk p{color:var(--text-on-dark-muted);font-size:14px;margin:0}
+.perk .perk-price{color:#86efac;font-size:13px;font-weight:600;margin-top:6px}
+
+/* B24 dashboard mock */
 .b24-mock{
   margin-top:24px;background:#0f1421;border:1px solid var(--border-dark);border-radius:var(--radius-lg);
   padding:20px;
@@ -289,7 +358,7 @@ table.romi td.delta{font-weight:700;color:var(--success)}
   color:#92400e;font-size:13px;line-height:1.5;
 }
 
-/* Demo (block 5) */
+/* Demo */
 .demo-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
 @media(max-width:860px){.demo-steps{grid-template-columns:1fr}}
 .demo-step{
@@ -302,7 +371,7 @@ table.romi td.delta{font-weight:700;color:var(--success)}
 .demo-step .step-time{font-size:13px;color:var(--text-muted);margin-bottom:12px}
 .demo-step h3{margin-bottom:8px}
 
-/* Pricing (block 6) */
+/* Pricing — tabpanel-specific */
 .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
 @media(max-width:980px){.price-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.price-grid{grid-template-columns:1fr}}
@@ -324,15 +393,16 @@ table.romi td.delta{font-weight:700;color:var(--success)}
 .price-features li{padding:7px 0;border-bottom:1px dashed var(--border);color:var(--text);display:flex;justify-content:space-between;gap:12px;font-size:13.5px}
 .price-features li:last-child{border-bottom:none}
 .price-features .v{color:var(--text-muted);font-weight:500;text-align:right;font-size:13px}
-.price-features li.module-line{flex-direction:column;align-items:flex-start;gap:4px;background:var(--bg-alt);margin:6px -10px;padding:8px 10px;border-radius:6px;border-bottom:none}
-.price-features li.module-line .lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted)}
-.price-features li.module-line .val{font-size:13px;color:var(--text);text-align:left;font-weight:500;line-height:1.4}
-.price-features li.module-line.disabled{opacity:0.5}
-.price-features li.module-line.disabled .val{color:var(--text-muted)}
+.price-features li.perk-line{
+  flex-direction:column;align-items:flex-start;gap:4px;background:#dcfce7;
+  margin:6px -10px;padding:8px 10px;border-radius:6px;border-bottom:none;
+}
+.price-features li.perk-line .lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#15803d}
+.price-features li.perk-line .val{font-size:13px;color:#15803d;text-align:left;font-weight:600;line-height:1.4}
 .price-card .btn{margin-top:auto;width:100%}
 .price-note{margin-top:28px;padding:16px 20px;background:var(--accent-soft);border-radius:var(--radius);color:var(--text);font-size:15px}
 
-/* Who (block 7) */
+/* Who */
 .who-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;margin-top:32px}
 @media(max-width:880px){.who-grid{grid-template-columns:1fr;gap:32px}}
 .checklist{list-style:none;padding:0;margin:0}
@@ -351,7 +421,7 @@ table.romi td.delta{font-weight:700;color:var(--success)}
 .not-fit h3{margin-bottom:14px;color:var(--text)}
 .not-fit ul{margin:0;padding-left:18px;color:var(--text-muted);font-size:14px;line-height:1.7}
 
-/* FAQ (block 8) */
+/* FAQ */
 .faq{max-width:880px;margin:40px auto 0}
 .faq details{
   border:1px solid var(--border);border-radius:var(--radius);background:#fff;
@@ -371,7 +441,7 @@ table.romi td.delta{font-weight:700;color:var(--success)}
 .faq .answer p{margin:0 0 10px;color:var(--text-muted)}
 .faq .answer p:last-child{margin-bottom:0}
 
-/* CTA Final (block 9) */
+/* CTA Final */
 .cta-final{padding:96px 0}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
 @media(max-width:880px){.cta-grid{grid-template-columns:1fr;gap:40px}}
@@ -420,7 +490,7 @@ footer{background:var(--bg-dark);color:var(--text-on-dark);padding:64px 0 32px}
 .mt-32{margin-top:32px}
 
 /* Scroll behavior */
-html{scroll-behavior:smooth;scroll-padding-top:80px}
+html{scroll-behavior:smooth;scroll-padding-top:140px}
 </style>
 </head>
 <body>
@@ -430,10 +500,10 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
   <div class="container nav">
     <a href="#top" class="brand"><span class="mark">A</span> AC PRO</a>
     <ul>
-      <li><a href="#pain">Боли</a></li>
-      <li><a href="#what">Модули</a></li>
+      <li><a href="#bridge">Боль → Модуль</a></li>
+      <li><a href="#variants">Варианты</a></li>
       <li><a href="#romi">Эффект</a></li>
-      <li><a href="#pricing">Тарифы</a></li>
+      <li><a href="#demo">Демо</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="nav-cta">
@@ -447,144 +517,178 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
   <div class="container">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">Два модуля — одна подписка</span>
-        <h1>AI-помощник продаж — в вашей <span>1С</span> и <span>Битрикс24</span></h1>
-        <p class="lead">Менеджер видит аналоги, сопутку и маржу прямо в 1С. РОП видит упущенные сделки и где недожали — в Битрикс24. Без выгрузок и долгих интеграций.</p>
-        <p class="lead">AC PRO — два модуля в одной подписке: панель в 1С УТ для менеджера + дашборд в Битрикс24 для РОПа. Запуск за 2–4 недели. Подписка от 75 000 ₸/мес.</p>
+        <span class="eyebrow">Подписка от 55 000 ₸/мес · Trial 14 дней</span>
+        <h1>AI-помощник продаж — в вашей <span>1С</span>, в <span>Битрикс24</span>, или в обеих сразу</h1>
+        <p class="lead">Менеджер видит аналоги, сопутку и маржу прямо в 1С. РОП видит упущенные сделки и где недожали — в Битрикс24. Берите один модуль или Bundle с приоритетной поддержкой и бесплатным онбордингом отдела продаж.</p>
+        <p class="lead">Запуск за 2–4 недели. Без выгрузок и долгих интеграций. Подходит, если у вас 1С УТ, или Битрикс24, или то и другое.</p>
         <div class="hero-cta">
           <button class="btn btn-primary" onclick="bookDemo()">Записаться на демо за 15 минут</button>
-          <a href="#demo" class="btn btn-secondary">Посмотреть, как работает →</a>
+          <a href="#variants" class="btn btn-secondary">Выбрать вариант →</a>
         </div>
-        <p class="hero-trust"><strong>Запуск за 2–4 недели.</strong> Trial 14 дней бесплатно. Без длинных контрактов.</p>
+        <p class="hero-trust"><strong>Trial 14 дней бесплатно.</strong> Без длинных контрактов. Запуск 2–4 недели.</p>
       </div>
       <div class="hero-mock" aria-hidden="true">
         <div class="hero-mock-head">
           <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="hero-mock-title">Заказ №00012345 — 1С УТ + Битрикс24</span>
+          <span class="hero-mock-title">AC PRO — три варианта подписки</span>
         </div>
-        <div class="mock-section-title">AC PRO в 1С — Аналоги</div>
-        <div class="mock-row"><span class="label">Кабель ВВГнг 3×2,5</span><span class="badge">+ в заказ</span></div>
-        <div class="mock-row"><span class="label">Кабель ВВГнг-LS 3×2,5</span><span class="badge">+ в заказ</span></div>
-        <div class="mock-section-title">AC PRO в 1С — Сопутка</div>
-        <div class="mock-row"><span class="label">Клеммы WAGO 222-415 (5 шт)</span><span class="badge">+ в заказ</span></div>
-        <div class="mock-row"><span class="label">Наконечники НШВИ 2,5</span><span class="badge">+ в заказ</span></div>
-        <div class="mock-section-title">AC PRO в Б24 — Дашборд РОПа</div>
-        <div class="mock-row"><span class="label">Маржа сделки: 12,8%</span><span class="badge" style="background:#dcfce7;color:#15803d">в норме</span></div>
-        <div class="mock-row"><span class="label">Упущено за неделю</span><span class="badge" style="background:#fee2e2;color:#b91c1c">1,8 млн ₸</span></div>
+        <div class="mock-section-title">Вариант 1 · AC PRO для 1С</div>
+        <div class="mock-row"><span class="label">Аналоги, сопутка, маржа в 1С</span><span class="badge">от 75 000 ₸</span></div>
+        <div class="mock-section-title">Вариант 2 · AC PRO для Битрикс24</div>
+        <div class="mock-row"><span class="label">Дашборд РОПа в Б24</span><span class="badge">от 55 000 ₸</span></div>
+        <div class="mock-section-title">Вариант 3 · Bundle 1С + Б24</div>
+        <div class="mock-row"><span class="label">Оба модуля + SLA 4ч + онбординг</span><span class="badge" style="background:#dcfce7;color:#15803d">от 130 000 ₸ · best value</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Block 2: Pain (4 groups × 2 cards = 8) -->
-<section id="pain" class="alt">
+<!-- Block 2: Bridge (Pain → Module) — BEFORE TABS -->
+<section id="bridge" class="alt">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Боль</span>
-      <h2>Где B2B-дистрибутор теряет деньги каждый день</h2>
-      <p class="lead">Четыре точки утечки: две на стороне менеджера в поле, две — на стороне РОПа и директора. Боли разные — решает их одна система.</p>
+      <span class="eyebrow">Какая боль → какой модуль</span>
+      <h2>Что у вас болит — и какой модуль это закрывает</h2>
+      <p class="lead">Восемь типовых болей B2B-дистрибутора — слева. Какой модуль AC PRO их решает — справа. Если у вас одна группа болей — берите один модуль. Если обе — Bundle.</p>
     </div>
-
-    <!-- Group 1: воронка -->
-    <div class="pain-group">
-      <div class="pain-group-head">
-        <span class="pain-group-tag">Группа 1 · Воронка</span>
-        <span class="pain-group-title">Заказ уходит к конкуренту</span>
-      </div>
-      <div class="pain-grid">
-        <div class="pain-card danger">
-          <span class="pain-ico">!</span>
-          <h3>«Этого нет на складе»</h3>
-          <p>Клиент звонит, нужного товара нет, менеджер не помнит аналогов наизусть. Заказ уходит к конкуренту. У типового дистрибутора — 8–15 таких заказов в неделю. На команде из 5 менеджеров — до 60 потерянных заказов в месяц.</p>
-        </div>
-        <div class="pain-card warn">
-          <span class="pain-ico">×</span>
-          <h3>«Забыли допродать»</h3>
-          <p>Оформили основной товар, не предложили клеммы / наконечники / расходники. Средний чек ниже потенциала на 12–25%. Менеджер не виноват — он не помнит наизусть 800+ SKU и связки между ними.</p>
-        </div>
-      </div>
+    <div class="bridge-table-wrap">
+      <table class="bridge">
+        <thead>
+          <tr>
+            <th>Боль</th>
+            <th>Модуль</th>
+            <th>Конкретная функция</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pain">Нет на складе → ушли к конкуренту</td>
+            <td class="module"><span class="module-pill">AC PRO для 1С</span></td>
+            <td class="fn">3 аналога к позиции в боковой панели</td>
+          </tr>
+          <tr>
+            <td class="pain">Забыли допродать сопутку</td>
+            <td class="module"><span class="module-pill">AC PRO для 1С</span></td>
+            <td class="fn">5 сопутки + скрипты допродажи по сегменту</td>
+          </tr>
+          <tr>
+            <td class="pain">10 кликов на одну позицию</td>
+            <td class="module"><span class="module-pill">AC PRO для 1С</span></td>
+            <td class="fn">Поиск по фото / штрихкоду / части артикула</td>
+          </tr>
+          <tr>
+            <td class="pain">Новички не знают аналогов</td>
+            <td class="module"><span class="module-pill">AC PRO для 1С</span></td>
+            <td class="fn">ИИ-подсказка по истории клиента + скрипты</td>
+          </tr>
+          <tr>
+            <td class="pain">Не видно упущенных сделок</td>
+            <td class="module"><span class="module-pill b24">AC PRO для Б24</span></td>
+            <td class="fn">Дашборд упущенных сделок + причины + объём</td>
+          </tr>
+          <tr>
+            <td class="pain">Непонятно, кто из менеджеров недожимает</td>
+            <td class="module"><span class="module-pill b24">AC PRO для Б24</span></td>
+            <td class="fn">Карта рентабельности менеджеров</td>
+          </tr>
+          <tr>
+            <td class="pain">Зависшие сделки в воронке</td>
+            <td class="module"><span class="module-pill b24">AC PRO для Б24</span></td>
+            <td class="fn">Авто-задачи на «поднять контакт» с порогом дней</td>
+          </tr>
+          <tr>
+            <td class="pain">Скидки вслепую → маржа в минус</td>
+            <td class="module"><span class="module-pill both">Bundle 1С + Б24</span></td>
+            <td class="fn">Маржа в 1С (менеджер) + уведомления РОПу (Б24)</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <!-- Group 2: менеджер в поле -->
-    <div class="pain-group">
-      <div class="pain-group-head">
-        <span class="pain-group-tag">Группа 2 · Менеджер</span>
-        <span class="pain-group-title">Скорость и зависимость от человека</span>
-      </div>
-      <div class="pain-grid">
-        <div class="pain-card warn">
-          <span class="pain-ico">⌛</span>
-          <h3>«10 кликов на одну позицию»</h3>
-          <p>Менеджер ищет товар в 1С через несколько окон и фильтров. По 30–60 секунд на каждую позицию × десятки позиций в день = час-полтора уходит на навигацию. Клиент ждёт на линии — раздражается.</p>
-        </div>
-        <div class="pain-card danger">
-          <span class="pain-ico">👤</span>
-          <h3>«Новичок продаёт хуже»</h3>
-          <p>Текучка 30–50% в год. Каждый новичок первые 2–3 месяца не знает аналогов и ассортимента. Продажи на его участке проседают на 20–40%. Выручка зависит от опыта 2–3 «звёзд», которых страшно потерять.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Group 3: РОП -->
-    <div class="pain-group">
-      <div class="pain-group-head">
-        <span class="pain-group-tag">Группа 3 · РОП</span>
-        <span class="pain-group-title">Невидимость и потери в воронке</span>
-      </div>
-      <div class="pain-grid">
-        <div class="pain-card danger">
-          <span class="pain-ico">👁</span>
-          <h3>«Не вижу, что упустили»</h3>
-          <p>Сделки в Битрикс24 закрываются как «отказ», причина — пустая. Менеджер пишет «клиент подумает» — сделка зависает на 2–3 недели и тихо умирает. Сколько денег потеряли — никто не считает.</p>
-        </div>
-        <div class="pain-card warn">
-          <span class="pain-ico">⚖</span>
-          <h3>«Кто из менеджеров недожимает»</h3>
-          <p>План команды выполняется, но между менеджерами разлёт в 3–5 раз. РОП не видит, кто не дожимает контакты, кто даёт скидки вслепую, кто теряет средний чек. Разбирать руками — по 2 часа в день на сделки.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Group 4: маржа -->
-    <div class="pain-group">
-      <div class="pain-group-head">
-        <span class="pain-group-tag">Группа 4 · Директор</span>
-        <span class="pain-group-title">План есть, прибыли нет</span>
-      </div>
-      <div class="pain-grid">
-        <div class="pain-card danger">
-          <span class="pain-ico">₸</span>
-          <h3>«Скидки вслепую»</h3>
-          <p>Менеджер режет цену, чтобы закрыть сделку. Себестоимость, логистику, бонусы поставщика держит в голове — или не держит. Сделка проходит, маржа в минус. В отчёте: «план выполнен». В P&L: провал по прибыли.</p>
-        </div>
-        <div class="pain-card warn">
-          <span class="pain-ico">📉</span>
-          <h3>«Выручка растёт, EBITDA падает»</h3>
-          <p>На уровне сделки никто не считает рентабельность в реальном времени. Маржу директор узнаёт через месяц по сводному отчёту бухгалтерии — поздно, чтобы что-то менять и спасать прибыль квартала.</p>
-        </div>
-      </div>
-    </div>
-
-    <p class="pain-tail">Существующие «РМ менеджера» от 1С-Рарус и обработки с ИТС закрывают 1–2 пункта из 8 — и требуют ручного ведения справочников. AC PRO собирает связки автоматически из ваших продаж в 1С + добавляет видимость для РОПа в Битрикс24 без отдельной интеграции.</p>
+    <p class="bridge-tail">Хотите закрыть только боль менеджера (4 первые строки) — берите модуль 1С. Только боль РОПа и директора (5–7) — модуль Б24. Боль на маржу (8) и обе группы — Bundle с приоритетной поддержкой и бесплатным онбордингом ОП.</p>
   </div>
 </section>
 
-<!-- Block 3: Two modules -->
-<section id="what" class="dark">
+<!-- TABS sticky -->
+<div class="tabs-wrap" id="variants">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow" style="color:#93b4ff">Что делает</span>
-      <h2 style="color:#fff">Два модуля — две роли. Одна подписка.</h2>
-      <p class="lead">AC PRO для 1С работает у менеджера. AC PRO для Битрикс24 — у РОПа и директора. Модули обмениваются данными автоматически: что нашёл менеджер в 1С — сразу видит РОП в Б24.</p>
+    <div class="tabs" role="tablist" aria-label="Варианты подписки AC PRO">
+      <button class="tab" role="tab" id="tab-1c" aria-selected="false" aria-controls="panel-1c" data-tab="1c">
+        AC PRO для 1С
+      </button>
+      <button class="tab" role="tab" id="tab-b24" aria-selected="false" aria-controls="panel-b24" data-tab="b24">
+        AC PRO для Битрикс24
+      </button>
+      <button class="tab" role="tab" id="tab-bundle" aria-selected="true" aria-controls="panel-bundle" data-tab="bundle">
+        Bundle 1С + Б24 <span class="tab-badge best">best value</span>
+      </button>
     </div>
+  </div>
+</div>
 
-    <!-- Module A: AC PRO для 1С -->
-    <div class="module-block" id="module-1c">
-      <div class="module-head">
-        <span class="module-tag">Модуль A</span>
-        <span class="module-title" style="color:#fff">AC PRO для 1С — рабочее место менеджера</span>
+<!-- ============================================================ -->
+<!-- TAB 1: AC PRO для 1С -->
+<!-- ============================================================ -->
+<div class="tabpanel" id="panel-1c" role="tabpanel" aria-labelledby="tab-1c">
+
+  <!-- Pain (1C-specific: groups 1+2) -->
+  <section class="alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Боль · 1С</span>
+        <h2>Где менеджер в 1С теряет деньги каждый день</h2>
+        <p class="lead">Четыре боли менеджера-продавца в B2B-дистрибуции. Все — оперативные, на уровне сделки. Все закрываются одним модулем в боковой панели 1С УТ.</p>
       </div>
-      <p class="module-sub">Боковая панель в форме заказа 1С УТ. Никаких новых окон. Решение видно за 2 секунды.</p>
+
+      <div class="pain-group">
+        <div class="pain-group-head">
+          <span class="pain-group-tag">Группа 1 · Воронка</span>
+          <span class="pain-group-title">Заказ уходит к конкуренту</span>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card danger">
+            <span class="pain-ico">!</span>
+            <h3>«Этого нет на складе»</h3>
+            <p>Клиент звонит, нужного товара нет, менеджер не помнит аналогов наизусть. Заказ уходит к конкуренту. У типового дистрибутора — 8–15 таких заказов в неделю. На команде из 5 менеджеров — до 60 потерянных заказов в месяц.</p>
+          </div>
+          <div class="pain-card warn">
+            <span class="pain-ico">×</span>
+            <h3>«Забыли допродать»</h3>
+            <p>Оформили основной товар, не предложили клеммы / наконечники / расходники. Средний чек ниже потенциала на 12–25%. Менеджер не виноват — он не помнит наизусть 800+ SKU и связки между ними.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pain-group">
+        <div class="pain-group-head">
+          <span class="pain-group-tag">Группа 2 · Менеджер</span>
+          <span class="pain-group-title">Скорость и зависимость от человека</span>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card warn">
+            <span class="pain-ico">⌛</span>
+            <h3>«10 кликов на одну позицию»</h3>
+            <p>Менеджер ищет товар в 1С через несколько окон и фильтров. По 30–60 секунд на каждую позицию × десятки позиций в день = час-полтора уходит на навигацию. Клиент ждёт на линии — раздражается.</p>
+          </div>
+          <div class="pain-card danger">
+            <span class="pain-ico">👤</span>
+            <h3>«Новичок продаёт хуже»</h3>
+            <p>Текучка 30–50% в год. Каждый новичок первые 2–3 месяца не знает аналогов и ассортимента. Продажи на его участке проседают на 20–40%. Выручка зависит от опыта 2–3 «звёзд», которых страшно потерять.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="pain-tail">Существующие «РМ менеджера» от 1С-Рарус и обработки с ИТС закрывают 1–2 пункта из 4 — и требуют ручного ведения справочников. AC PRO для 1С собирает связки автоматически из ваших продаж в 1С.</p>
+    </div>
+  </section>
+
+  <!-- What (1C module) -->
+  <section class="dark">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" style="color:#93b4ff">Что делает</span>
+        <h2 style="color:#fff">AC PRO для 1С — рабочее место менеджера</h2>
+        <p class="lead">Боковая панель в форме заказа 1С УТ. Никаких новых окон. Решение видно за 2 секунды.</p>
+      </div>
       <div class="module-grid">
         <div class="feat-card">
           <span class="ico">A</span>
@@ -617,19 +721,151 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
           <p>Сегмент клиента (B2B-стройка / B2B-производство / B2C-розница) → готовая фраза для допродажи. Новичок продаёт как опытный с первой недели.</p>
         </div>
       </div>
+      <div class="shared-card">
+        <span class="ico">⚙</span>
+        <div>
+          <h3>База строится сама за 2–4 недели</h3>
+          <p>AI-движок собирает связки из исторических продаж в 1С. Не нужно вручную вбивать пары и заполнять справочники. Модель доучивается на каждом одобренном/отклонённом предложении менеджера.</p>
+        </div>
+      </div>
       <div class="screenshot-placeholder" style="margin-top:32px">
         [Скриншот: боковая панель AC PRO в форме заказа 1С УТ]<br>
         <small>Размер 1920×1080, PNG. Источник: 1С-агент / Анатолий Зелепукин.</small>
       </div>
     </div>
+  </section>
 
-    <!-- Module B: AC PRO для Битрикс24 -->
-    <div class="module-block" id="module-b24">
-      <div class="module-head">
-        <span class="module-tag b24">Модуль Б</span>
-        <span class="module-title" style="color:#fff">AC PRO для Битрикс24 — рабочее место РОПа и директора</span>
+  <!-- Pricing 1C -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Тарифы · только модуль 1С</span>
+        <h2>Цены на AC PRO для 1С</h2>
+        <p class="lead">Если у вас 1С УТ и нет Битрикс24 — берите только модуль 1С. Без скрытых платежей, без длинных контрактов. Trial 14 дней — бесплатно.</p>
       </div>
-      <p class="module-sub">Дашборд внутри Битрикс24, прямо рядом с воронкой сделок. Без отдельной BI-системы и Excel-выгрузок.</p>
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="price-tier">Trial</div>
+          <div class="price-amount">0 ₸</div>
+          <div class="price-per">14 дней бесплатно</div>
+          <ul class="price-features">
+            <li><span>Функции</span><span class="v">базовый: аналоги + сопутка</span></li>
+            <li><span>Подсказки/мес</span><span class="v">100</span></li>
+            <li><span>Пользователей</span><span class="v">1 менеджер</span></li>
+            <li><span>Поддержка</span><span class="v">email · 24ч</span></li>
+          </ul>
+          <button class="btn btn-secondary" onclick="bookDemo()">Начать бесплатно</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Starter</div>
+          <div class="price-amount">75 000 ₸</div>
+          <div class="price-per">в месяц</div>
+          <ul class="price-features">
+            <li><span>Функции</span><span class="v">полный: аналоги + сопутка + поиск + маржа</span></li>
+            <li><span>Подсказки/мес</span><span class="v">до 1 000</span></li>
+            <li><span>Пользователей</span><span class="v">1 модератор + 1 менеджер</span></li>
+            <li><span>Поддержка</span><span class="v">email · 24ч</span></li>
+          </ul>
+          <button class="btn btn-secondary" onclick="bookDemo()">Купить Starter</button>
+        </div>
+        <div class="price-card featured">
+          <div class="price-tier">Pro</div>
+          <div class="price-amount">180 000 ₸</div>
+          <div class="price-per">в месяц</div>
+          <ul class="price-features">
+            <li><span>Функции</span><span class="v">полный + ИИ-подсказка по истории + скрипты</span></li>
+            <li><span>Подсказки/мес</span><span class="v">до 10 000</span></li>
+            <li><span>Пользователей</span><span class="v">до 5</span></li>
+            <li><span>Поддержка</span><span class="v">email + чат · 24ч</span></li>
+          </ul>
+          <button class="btn btn-primary" onclick="bookDemo()">Купить Pro</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Enterprise</div>
+          <div class="price-amount">от 450 000 ₸</div>
+          <div class="price-per">в месяц</div>
+          <ul class="price-features">
+            <li><span>Функции</span><span class="v">полный + кастом-модули под вашу 1С</span></li>
+            <li><span>Подсказки/мес</span><span class="v">без лимита</span></li>
+            <li><span>Пользователей</span><span class="v">без лимита</span></li>
+            <li><span>SLA</span><span class="v">прописывается в договоре</span></li>
+            <li><span>Поддержка</span><span class="v">dedicated</span></li>
+          </ul>
+          <button class="btn btn-secondary" onclick="bookDemo()">Запросить КП</button>
+        </div>
+      </div>
+      <div class="price-note">
+        <strong>Хочется и видимость для РОПа?</strong> Возьмите <a href="#variants" onclick="switchTab('bundle');return false;">Bundle 1С + Б24</a> — получите оба модуля + приоритетную поддержку SLA 4 часа + бесплатный онбординг отдела продаж.
+      </div>
+    </div>
+  </section>
+
+</div><!-- /panel-1c -->
+
+<!-- ============================================================ -->
+<!-- TAB 2: AC PRO для Битрикс24 -->
+<!-- ============================================================ -->
+<div class="tabpanel" id="panel-b24" role="tabpanel" aria-labelledby="tab-b24">
+
+  <!-- Pain (B24-specific: groups 3+4) -->
+  <section class="alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Боль · Битрикс24</span>
+        <h2>Где РОП и директор теряют деньги каждую неделю</h2>
+        <p class="lead">Четыре боли руководителя продаж и владельца бизнеса. Невидимость в воронке и непрозрачность маржи — закрываются одним модулем-приложением внутри Битрикс24.</p>
+      </div>
+
+      <div class="pain-group">
+        <div class="pain-group-head">
+          <span class="pain-group-tag">Группа 3 · РОП</span>
+          <span class="pain-group-title">Невидимость и потери в воронке</span>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card danger">
+            <span class="pain-ico">👁</span>
+            <h3>«Не вижу, что упустили»</h3>
+            <p>Сделки в Битрикс24 закрываются как «отказ», причина — пустая. Менеджер пишет «клиент подумает» — сделка зависает на 2–3 недели и тихо умирает. Сколько денег потеряли — никто не считает.</p>
+          </div>
+          <div class="pain-card warn">
+            <span class="pain-ico">⚖</span>
+            <h3>«Кто из менеджеров недожимает»</h3>
+            <p>План команды выполняется, но между менеджерами разлёт в 3–5 раз. РОП не видит, кто не дожимает контакты, кто даёт скидки вслепую, кто теряет средний чек. Разбирать руками — по 2 часа в день на сделки.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pain-group">
+        <div class="pain-group-head">
+          <span class="pain-group-tag">Группа 4 · Директор</span>
+          <span class="pain-group-title">План есть, прибыли нет</span>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card danger">
+            <span class="pain-ico">₸</span>
+            <h3>«Скидки вслепую»</h3>
+            <p>Менеджер режет цену, чтобы закрыть сделку. Себестоимость, логистику, бонусы поставщика держит в голове — или не держит. Сделка проходит, маржа в минус. В отчёте: «план выполнен». В P&L: провал по прибыли.</p>
+          </div>
+          <div class="pain-card warn">
+            <span class="pain-ico">📉</span>
+            <h3>«Выручка растёт, EBITDA падает»</h3>
+            <p>На уровне сделки никто не считает рентабельность в реальном времени. Маржу директор узнаёт через месяц по сводному отчёту бухгалтерии — поздно, чтобы что-то менять и спасать прибыль квартала.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="pain-tail">Стандартные отчёты Битрикс24 показывают «сколько сделок и сумма», но не «почему ушли» и не «у кого маржа в минусе». AC PRO для Б24 добавляет дашборд РОПа прямо в портал — без отдельной BI-системы и Excel-выгрузок.</p>
+    </div>
+  </section>
+
+  <!-- What (B24 module) -->
+  <section class="dark">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" style="color:#fbbf24">Что делает</span>
+        <h2 style="color:#fff">AC PRO для Битрикс24 — рабочее место РОПа и директора</h2>
+        <p class="lead">Дашборд внутри Битрикс24, прямо рядом с воронкой сделок. Без отдельной BI-системы и Excel-выгрузок.</p>
+      </div>
       <div class="module-grid">
         <div class="feat-card b24">
           <span class="ico">📊</span>
@@ -656,10 +892,10 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
           <h3>Уведомления о скидках без расчёта маржи</h3>
           <p>Менеджер ставит скидку, при которой маржа падает ниже порога — РОПу сразу приходит уведомление в Б24 и Telegram. Перехват до того, как сделка ушла в убыток.</p>
         </div>
-        <div class="feat-card b24" style="background:rgba(251,191,36,0.06);border-color:rgba(251,191,36,0.2)">
-          <span class="ico">↺</span>
-          <h3>Двусторонняя связь с 1С</h3>
-          <p>Сделки и контакты из Б24 связаны с заказами и контрагентами в 1С. Что менеджер сделал в 1С — отражается в Б24. Без дублей и сверок.</p>
+        <div class="feat-card b24">
+          <span class="ico">📥</span>
+          <h3>Источники и причины «не куплено»</h3>
+          <p>Дополнительная аналитика по входящим заявкам Б24: какой источник даёт самые маржинальные сделки, какая причина «не куплено» лидирует по сегменту, где менеджер сам отказался от лида.</p>
         </div>
       </div>
 
@@ -702,85 +938,428 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
         <small>Размер 1920×1080, PNG. Источник: 1С-агент / Анатолий Зелепукин.</small>
       </div>
     </div>
+  </section>
 
-    <!-- Shared: самообучение -->
-    <div class="shared-card">
-      <span class="ico">⚙</span>
-      <div>
-        <h3>Общее для двух модулей · База строится сама за 2–4 недели</h3>
-        <p>AI-движок собирает связки из исторических продаж в 1С и сделок в Битрикс24. Не нужно вручную вбивать пары и заполнять справочники. Модель доучивается на каждом одобренном/отклонённом предложении менеджера и на каждом закрытии сделки.</p>
+  <!-- Pricing B24 -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Тарифы · только модуль Битрикс24</span>
+        <h2>Цены на AC PRO для Битрикс24</h2>
+        <p class="lead">Если у вас Битрикс24 и нет 1С УТ (или 1С есть, но вы хотите начать с управленческого слоя) — берите только модуль Б24. Trial 14 дней — бесплатно.</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="price-tier">Trial</div>
+          <div class="price-amount">0 ₸</div>
+          <div class="price-per">14 дней бесплатно</div>
+          <ul class="price-features">
+            <li><span>Функции</span><span class="v">базовый: дашборд упущенных</span></li>
+            <li><span>Сделок/мес</span><span class="v">до 200</span></li>
+            <li><span>Пользователей</span><span class="v">1 РОП</span></li>
+            <li><span>Поддержка</span><span class="v">email · 24ч</span></li>
+          </ul>
+          <button class="btn btn-secondary" onclick="bookDemo()">Начать бесплатно</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Starter</div>
+          <div class="price-amount">55 000 ₸</div>
+          <div class="price-per">в месяц</div>
+          <ul class="price-features">
+            <li><span>Функции</span><span class="v">дашборд упущенных + авто-задачи</span></li>
+            <li><span>Сделок/мес</span><span class="v">до 1 000</span></li>
+            <li><span>Пользователей</span><span class="v">1 РОП + 3 менеджера</span></li>
+            <li><span>Поддержка</span><span class="v">email · 24ч</span></li>
+          </ul>
+          <button class="btn btn-secondary" onclick="bookDemo()">Купить Starter</button>
+        </div>
+        <div class="price-card featured">
+          <div class="price-tier">Pro</div>
+          <div class="price-amount">130 000 ₸</div>
+          <div class="price-per">в месяц</div>
+          <ul class="price-features">
+            <li><span>Функции</span><span class="v">полный: дашборд + карта рентабельности + уведомления</span></li>
+            <li><span>Сделок/мес</span><span class="v">до 10 000</span></li>
+            <li><span>Пользователей</span><span class="v">до 10</span></li>
+            <li><span>Поддержка</span><span class="v">email + чат · 24ч</span></li>
+          </ul>
+          <button class="btn btn-primary" onclick="bookDemo()">Купить Pro</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Enterprise</div>
+          <div class="price-amount">от 320 000 ₸</div>
+          <div class="price-per">в месяц</div>
+          <ul class="price-features">
+            <li><span>Функции</span><span class="v">полный + кастом-отчёты + сегментация</span></li>
+            <li><span>Сделок/мес</span><span class="v">без лимита</span></li>
+            <li><span>Пользователей</span><span class="v">без лимита</span></li>
+            <li><span>SLA</span><span class="v">прописывается в договоре</span></li>
+            <li><span>Поддержка</span><span class="v">dedicated</span></li>
+          </ul>
+          <button class="btn btn-secondary" onclick="bookDemo()">Запросить КП</button>
+        </div>
+      </div>
+      <div class="price-note">
+        <strong>У вас и 1С УТ, и Битрикс24?</strong> Возьмите <a href="#variants" onclick="switchTab('bundle');return false;">Bundle 1С + Б24</a> — получите оба модуля + приоритетную поддержку SLA 4 часа + бесплатный онбординг отдела продаж.
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Block 3.5: Pain → Module bridge -->
-<section id="bridge">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Боль → модуль</span>
-      <h2>Какая боль → какой модуль её решает</h2>
-      <p class="lead">Восемь болей сверху — восемь конкретных функций снизу. Никакой магии и «улучшения процессов» в общем.</p>
-    </div>
-    <div class="bridge-table-wrap">
-      <table class="bridge">
-        <thead>
-          <tr>
-            <th>Боль</th>
-            <th>Модуль</th>
-            <th>Конкретная функция</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="pain">Нет на складе → ушли к конкуренту</td>
-            <td class="module"><span class="module-pill">AC PRO для 1С</span></td>
-            <td class="fn">3 аналога к позиции в боковой панели</td>
-          </tr>
-          <tr>
-            <td class="pain">Забыли допродать сопутку</td>
-            <td class="module"><span class="module-pill">AC PRO для 1С</span></td>
-            <td class="fn">5 сопутки + скрипты допродажи по сегменту</td>
-          </tr>
-          <tr>
-            <td class="pain">10 кликов на одну позицию</td>
-            <td class="module"><span class="module-pill">AC PRO для 1С</span></td>
-            <td class="fn">Поиск по фото / штрихкоду / части артикула</td>
-          </tr>
-          <tr>
-            <td class="pain">Новички не знают аналогов</td>
-            <td class="module"><span class="module-pill">AC PRO для 1С</span></td>
-            <td class="fn">ИИ-подсказка по истории клиента + скрипты</td>
-          </tr>
-          <tr>
-            <td class="pain">Не видно упущенных сделок</td>
-            <td class="module"><span class="module-pill b24">AC PRO для Б24</span></td>
-            <td class="fn">Дашборд упущенных сделок + причины + объём</td>
-          </tr>
-          <tr>
-            <td class="pain">Скидки вслепую → маржа в минус</td>
-            <td class="module"><span class="module-pill both">1С + Б24</span></td>
-            <td class="fn">Маржа в реальном времени (1С) + уведомления РОПу (Б24)</td>
-          </tr>
-          <tr>
-            <td class="pain">Непонятно, кто из менеджеров недожимает</td>
-            <td class="module"><span class="module-pill b24">AC PRO для Б24</span></td>
-            <td class="fn">Карта рентабельности менеджеров</td>
-          </tr>
-          <tr>
-            <td class="pain">Зависшие сделки в воронке</td>
-            <td class="module"><span class="module-pill b24">AC PRO для Б24</span></td>
-            <td class="fn">Авто-задачи на «поднять контакт» с порогом дней</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="bridge-tail">Восемь болей — восемь функций в двух модулях. Никаких «BI-проектов на год» и SAP-внедрений. Запуск за 2–4 недели.</p>
-  </div>
-</section>
+</div><!-- /panel-b24 -->
 
-<!-- Block 4: ROMI -->
-<section id="romi">
+<!-- ============================================================ -->
+<!-- TAB 3: Bundle 1С + Б24 -->
+<!-- ============================================================ -->
+<div class="tabpanel active" id="panel-bundle" role="tabpanel" aria-labelledby="tab-bundle">
+
+  <!-- Pain (Bundle: all 4 groups, condensed) -->
+  <section class="alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Боль · полная картина</span>
+        <h2>Восемь точек утечки денег — от менеджера в поле до P&L директора</h2>
+        <p class="lead">Боли менеджера в 1С и боли РОПа в Битрикс24 — взаимосвязаны. Менеджер режет скидку «вслепую» — это и потеря маржи на сделке (1С), и непрозрачность для РОПа (Б24). Bundle закрывает обе стороны.</p>
+      </div>
+
+      <div class="pain-group">
+        <div class="pain-group-head">
+          <span class="pain-group-tag">Группа 1 · Воронка</span>
+          <span class="pain-group-title">Заказ уходит к конкуренту</span>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card danger">
+            <span class="pain-ico">!</span>
+            <h3>«Этого нет на складе»</h3>
+            <p>Клиент звонит, нужного товара нет, менеджер не помнит аналогов. Заказ уходит к конкуренту. До 60 потерянных заказов в месяц на команде из 5 менеджеров.</p>
+          </div>
+          <div class="pain-card warn">
+            <span class="pain-ico">×</span>
+            <h3>«Забыли допродать»</h3>
+            <p>Оформили основной товар, не предложили сопутку. Средний чек ниже потенциала на 12–25%. Менеджер не помнит наизусть 800+ SKU и связки.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pain-group">
+        <div class="pain-group-head">
+          <span class="pain-group-tag">Группа 2 · Менеджер</span>
+          <span class="pain-group-title">Скорость и зависимость от человека</span>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card warn">
+            <span class="pain-ico">⌛</span>
+            <h3>«10 кликов на одну позицию»</h3>
+            <p>Час-полтора в день уходит на навигацию в 1С через несколько окон. Клиент ждёт на линии — раздражается.</p>
+          </div>
+          <div class="pain-card danger">
+            <span class="pain-ico">👤</span>
+            <h3>«Новичок продаёт хуже»</h3>
+            <p>Текучка 30–50% в год. Каждый новичок первые 2–3 месяца проседает на 20–40%. Выручка зависит от опыта 2–3 «звёзд».</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pain-group">
+        <div class="pain-group-head">
+          <span class="pain-group-tag">Группа 3 · РОП</span>
+          <span class="pain-group-title">Невидимость и потери в воронке</span>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card danger">
+            <span class="pain-ico">👁</span>
+            <h3>«Не вижу, что упустили»</h3>
+            <p>Сделки в Б24 закрываются как «отказ», причина пустая. Сколько денег потеряли — никто не считает.</p>
+          </div>
+          <div class="pain-card warn">
+            <span class="pain-ico">⚖</span>
+            <h3>«Кто из менеджеров недожимает»</h3>
+            <p>План команды выполняется, но между менеджерами разлёт в 3–5 раз. РОП не видит, кто теряет средний чек.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pain-group">
+        <div class="pain-group-head">
+          <span class="pain-group-tag">Группа 4 · Директор</span>
+          <span class="pain-group-title">План есть, прибыли нет</span>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card danger">
+            <span class="pain-ico">₸</span>
+            <h3>«Скидки вслепую»</h3>
+            <p>Менеджер режет цену вслепую → маржа в минус. В отчёте «план выполнен», в P&L — провал по прибыли.</p>
+          </div>
+          <div class="pain-card warn">
+            <span class="pain-ico">📉</span>
+            <h3>«Выручка растёт, EBITDA падает»</h3>
+            <p>На уровне сделки никто не считает рентабельность в реальном времени. Директор узнаёт через месяц по бухотчёту.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="pain-tail">Группы 1+2 закрывает модуль 1С (менеджер видит решение в сделке). Группы 3+4 — модуль Б24 (РОП и директор видят картину сверху). Скидки вслепую (центральная боль на P&L) закрываются только связкой обоих модулей — поэтому Bundle.</p>
+    </div>
+  </section>
+
+  <!-- What (both modules) -->
+  <section class="dark">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" style="color:#86efac">Что делает</span>
+        <h2 style="color:#fff">Два модуля. Одна подписка. Перки сверху.</h2>
+        <p class="lead">AC PRO для 1С работает у менеджера. AC PRO для Битрикс24 — у РОПа и директора. Модули обмениваются данными автоматически: что нашёл менеджер в 1С — сразу видит РОП в Б24.</p>
+      </div>
+
+      <!-- Module A: 1C -->
+      <div class="module-block" id="module-1c">
+        <div class="module-head">
+          <span class="module-tag">Модуль A</span>
+          <span class="module-title" style="color:#fff">AC PRO для 1С — рабочее место менеджера</span>
+        </div>
+        <p class="module-sub">Боковая панель в форме заказа 1С УТ. 6 функций: аналоги, сопутка, поиск, маржа, ИИ-история, скрипты.</p>
+        <div class="module-grid">
+          <div class="feat-card">
+            <span class="ico">A</span>
+            <h3>3 аналога к каждой позиции</h3>
+            <p>Если товара нет — менеджер видит, что предложить, за 2 секунды.</p>
+          </div>
+          <div class="feat-card">
+            <span class="ico">+</span>
+            <h3>5 сопутствующих товаров</h3>
+            <p>Ранжированы по конверсии «менеджер предложил → клиент согласился».</p>
+          </div>
+          <div class="feat-card">
+            <span class="ico">🔍</span>
+            <h3>Поиск по фото / штрихкоду / артикулу</h3>
+            <p>Вместо 10 кликов через несколько окон — 1–2 секунды.</p>
+          </div>
+          <div class="feat-card">
+            <span class="ico">₸</span>
+            <h3>Маржа в реальном времени</h3>
+            <p>Цвет-индикатор: зелёный / жёлтый / красный. Менеджер видит, до какой цены опустить.</p>
+          </div>
+          <div class="feat-card">
+            <span class="ico">🤖</span>
+            <h3>ИИ-подсказка по истории клиента</h3>
+            <p>Учитывает 12–24 мес. истории покупок. Аналог сначала из любимого бренда.</p>
+          </div>
+          <div class="feat-card">
+            <span class="ico">💬</span>
+            <h3>Скрипты допродажи по сегменту</h3>
+            <p>Готовая фраза под сегмент клиента. Новичок продаёт как опытный с первой недели.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module B: B24 -->
+      <div class="module-block" id="module-b24">
+        <div class="module-head">
+          <span class="module-tag b24">Модуль Б</span>
+          <span class="module-title" style="color:#fff">AC PRO для Битрикс24 — рабочее место РОПа и директора</span>
+        </div>
+        <p class="module-sub">Дашборд внутри Битрикс24. 6 функций: упущенные, карта рентабельности, авто-задачи, сегментация, уведомления, источники.</p>
+        <div class="module-grid">
+          <div class="feat-card b24">
+            <span class="ico">📊</span>
+            <h3>Дашборд упущенных сделок</h3>
+            <p>Все «отказы» и «не взято в работу» — с причиной, суммой, группировкой по менеджеру и сегменту.</p>
+          </div>
+          <div class="feat-card b24">
+            <span class="ico">🗺</span>
+            <h3>Карта рентабельности менеджеров</h3>
+            <p>Средняя маржа, разрыв «план vs факт», скидки без согласования, доля сделок без сопутки.</p>
+          </div>
+          <div class="feat-card b24">
+            <span class="ico">⏰</span>
+            <h3>Авто-задачи «поднять контакт»</h3>
+            <p>Сделка простаивает &gt; N дней — задача менеджеру и копия РОПу. Меньше тихих утечек.</p>
+          </div>
+          <div class="feat-card b24">
+            <span class="ico">🎯</span>
+            <h3>Сегментация клиентов по марже</h3>
+            <p>Чек, маржа %, LTV, частота. Видно, какой сегмент усилить, какой — выходить.</p>
+          </div>
+          <div class="feat-card b24">
+            <span class="ico">🔔</span>
+            <h3>Уведомления о скидках без маржи</h3>
+            <p>Если маржа падает ниже порога — РОПу уведомление в Б24 и Telegram. Перехват до убытка.</p>
+          </div>
+          <div class="feat-card b24" style="background:rgba(34,197,94,0.06);border-color:rgba(34,197,94,0.2)">
+            <span class="ico">↺</span>
+            <h3>Двусторонняя связь 1С ↔ Б24</h3>
+            <p>Сделки и контакты в Б24 связаны с заказами и контрагентами в 1С. Без дублей и сверок. Эксклюзив Bundle.</p>
+          </div>
+        </div>
+
+        <!-- B24 dashboard mock -->
+        <div class="b24-mock" aria-hidden="true">
+          <div class="b24-mock-head">
+            <span class="dot"></span><span class="dot"></span><span class="dot green"></span>
+            <span class="title">AC PRO · Дашборд РОПа в Битрикс24 — Сделки</span>
+          </div>
+          <div class="b24-mock-grid">
+            <div class="b24-kpi">
+              <div class="lbl">Упущено за неделю</div>
+              <div class="val">1,8 млн ₸</div>
+              <div class="delta down">−12% к плану</div>
+            </div>
+            <div class="b24-kpi">
+              <div class="lbl">Средняя маржа</div>
+              <div class="val">14,2%</div>
+              <div class="delta up">+1,8 п.п.</div>
+            </div>
+            <div class="b24-kpi">
+              <div class="lbl">Скидок без согласования</div>
+              <div class="val">7</div>
+              <div class="delta down">за 7 дней</div>
+            </div>
+            <div class="b24-kpi">
+              <div class="lbl">Зависших сделок</div>
+              <div class="val">23</div>
+              <div class="delta down">сумма 5,4 млн ₸</div>
+            </div>
+          </div>
+          <div class="b24-row"><span class="name"><span class="avt">АК</span>Анна К. — план 4,2 млн</span><span class="num ok">+12% / маржа 16,8%</span></div>
+          <div class="b24-row"><span class="name"><span class="avt">МЛ</span>Михаил Л. — план 4,2 млн</span><span class="num bad">−24% / маржа 9,1%</span></div>
+          <div class="b24-row"><span class="name"><span class="avt">СВ</span>Сергей В. — план 4,2 млн</span><span class="num">−3% / маржа 13,4%</span></div>
+          <div class="b24-row"><span class="name"><span class="avt">ОР</span>Олеся Р. — план 4,2 млн</span><span class="num bad">−18% / маржа 8,7%</span></div>
+        </div>
+      </div>
+
+      <!-- BUNDLE PERKS -->
+      <div class="bundle-perks">
+        <div class="bundle-perks-head">
+          <span class="bundle-perks-tag">Только в Bundle</span>
+          <h3 style="color:#fff">Что входит в Bundle сверх двух модулей</h3>
+        </div>
+        <p style="color:var(--text-on-dark-muted);max-width:760px;margin-bottom:18px">Bundle стоит как два модуля по отдельности. Сверху мы добавляем то, что обычно продаётся как отдельная услуга — приоритетную поддержку и онбординг отдела продаж. Скидки за Bundle нет — есть value.</p>
+        <div class="bundle-perks-grid">
+          <div class="perk">
+            <div class="perk-head">
+              <span class="perk-ico">🚀</span>
+              <h4>Приоритетная техподдержка · SLA 4 часа</h4>
+            </div>
+            <p>Ответ на инцидент в течение 4 рабочих часов вместо 24 на одиночных модулях. Выделенный канал в Telegram с инженером AC PRO. Если что-то сломалось в пятницу вечером — не ждёте до понедельника.</p>
+            <div class="perk-price">Эквивалент платного SLA-плана ≈ 40 000 ₸/мес</div>
+          </div>
+          <div class="perk">
+            <div class="perk-head">
+              <span class="perk-ico">🎓</span>
+              <h4>Онбординг отдела продаж — бесплатно</h4>
+            </div>
+            <p>Двухчасовая онлайн-сессия для вашей команды: как менеджеры используют панель в 1С, как РОП читает дашборд в Б24, какие скрипты допродажи под ваш сегмент. Видеозапись и материалы — остаются у вас.</p>
+            <div class="perk-price">Эквивалент разовой услуги ≈ 150 000 ₸</div>
+          </div>
+          <div class="perk">
+            <div class="perk-head">
+              <span class="perk-ico">↺</span>
+              <h4>Двусторонняя связь 1С ↔ Б24</h4>
+            </div>
+            <p>Только в Bundle. Сделки и контакты в Б24 автоматически связываются с заказами и контрагентами в 1С. Без дублей, без ручной сверки. Менеджер делает заказ в 1С — он сразу появляется в карточке сделки Б24 с маржой.</p>
+            <div class="perk-price">Эксклюзив Bundle</div>
+          </div>
+          <div class="perk">
+            <div class="perk-head">
+              <span class="perk-ico">📈</span>
+              <h4>Единая аналитика «менеджер → сделка → P&L»</h4>
+            </div>
+            <p>В дашборде РОПа Б24 — данные не только из CRM, но и из 1С: фактическая маржа закрытых сделок, что менеджер допродал по подсказке AC PRO, какой % сопутки в его чеке. Полная картина за неделю в одном окне.</p>
+            <div class="perk-price">Эксклюзив Bundle</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shared-card">
+        <span class="ico">⚙</span>
+        <div>
+          <h3>База строится сама за 2–4 недели</h3>
+          <p>AI-движок собирает связки из исторических продаж в 1С и сделок в Битрикс24. Не нужно вручную вбивать пары и заполнять справочники. Модель доучивается на каждом одобренном/отклонённом предложении и на каждом закрытии сделки.</p>
+        </div>
+      </div>
+
+      <div class="screenshot-placeholder" style="margin-top:32px">
+        [Скриншоты: панель AC PRO в 1С + дашборд AC PRO в Б24]<br>
+        <small>Размер 1920×1080 каждый, PNG. Источник: 1С-агент / Анатолий Зелепукин.</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Bundle -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Тарифы · Bundle</span>
+        <h2>Цены на Bundle 1С + Б24</h2>
+        <p class="lead">Bundle = модуль 1С + модуль Б24 за ту же сумму, что и по отдельности. Сверху — приоритетная поддержка SLA 4 часа и онбординг отдела продаж бесплатно (эквивалент ≈ 190 000 ₸ value).</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="price-tier">Trial</div>
+          <div class="price-amount">0 ₸</div>
+          <div class="price-per">14 дней бесплатно</div>
+          <ul class="price-features">
+            <li><span>Модуль 1С</span><span class="v">базовый</span></li>
+            <li><span>Модуль Б24</span><span class="v">базовый</span></li>
+            <li><span>Подсказки/мес</span><span class="v">100</span></li>
+            <li><span>Сделок/мес</span><span class="v">200</span></li>
+            <li><span>Пользователей</span><span class="v">1 менеджер + 1 РОП</span></li>
+          </ul>
+          <button class="btn btn-secondary" onclick="bookDemo()">Начать бесплатно</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Starter</div>
+          <div class="price-amount">130 000 ₸</div>
+          <div class="price-per">в месяц · 1С + Б24</div>
+          <ul class="price-features">
+            <li><span>Модуль 1С</span><span class="v">полный</span></li>
+            <li><span>Модуль Б24</span><span class="v">базовый</span></li>
+            <li><span>Подсказки/мес</span><span class="v">до 1 000</span></li>
+            <li><span>Пользователей</span><span class="v">до 5</span></li>
+            <li class="perk-line"><span class="lbl">Bundle perks</span><span class="val">🚀 SLA 4ч · 🎓 онбординг ОП</span></li>
+          </ul>
+          <button class="btn btn-secondary" onclick="bookDemo()">Купить Starter</button>
+        </div>
+        <div class="price-card featured">
+          <div class="price-tier">Pro</div>
+          <div class="price-amount">310 000 ₸</div>
+          <div class="price-per">в месяц · 1С + Б24</div>
+          <ul class="price-features">
+            <li><span>Модуль 1С</span><span class="v">полный + ИИ-история + скрипты</span></li>
+            <li><span>Модуль Б24</span><span class="v">полный: дашборд + карта рентабельности + уведомления</span></li>
+            <li><span>Подсказки/мес</span><span class="v">до 10 000</span></li>
+            <li><span>Пользователей</span><span class="v">до 10</span></li>
+            <li class="perk-line"><span class="lbl">Bundle perks</span><span class="val">🚀 SLA 4ч · 🎓 онбординг ОП · ↺ 1С↔Б24 sync</span></li>
+          </ul>
+          <button class="btn btn-primary" onclick="bookDemo()">Купить Pro</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Enterprise</div>
+          <div class="price-amount">от 770 000 ₸</div>
+          <div class="price-per">в месяц · 1С + Б24</div>
+          <ul class="price-features">
+            <li><span>Модуль 1С</span><span class="v">полный + кастом-модули</span></li>
+            <li><span>Модуль Б24</span><span class="v">полный + кастом-отчёты + сегментация</span></li>
+            <li><span>Лимиты</span><span class="v">без ограничений</span></li>
+            <li><span>White-label · договорный SLA</span><span class="v">+</span></li>
+            <li class="perk-line"><span class="lbl">Bundle perks</span><span class="val">🚀 SLA 4ч (или жёстче в договоре) · 🎓 онбординг ОП · ↺ 1С↔Б24 · dedicated</span></li>
+          </ul>
+          <button class="btn btn-secondary" onclick="bookDemo()">Запросить КП</button>
+        </div>
+      </div>
+      <div class="price-note">
+        <strong>Bundle честный.</strong> Цена Bundle = цена 1С-only + цена Б24-only. Денежной скидки за Bundle нет — потому что value мы даём через приоритетную поддержку (SLA 4ч вместо 24ч) и бесплатный онбординг отдела продаж (обычно 150 000 ₸ разовая услуга). Если плюшки вам не нужны — берите модули по отдельности, не переплачиваете.
+      </div>
+    </div>
+  </section>
+
+</div><!-- /panel-bundle -->
+
+<!-- ============================================================ -->
+<!-- COMMON BLOCKS (after tabs) -->
+<!-- ============================================================ -->
+
+<!-- Block 4: ROMI (common) -->
+<section id="romi" class="alt">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Эффект в деньгах</span>
@@ -825,9 +1404,9 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
         </tbody>
       </table>
     </div>
-    <p class="romi-note">Окупаемость подписки на тарифе <strong>Pro (220 000 ₸/мес для команды до 5 менеджеров)</strong> — меньше одного месяца на типичном дистрибуторе.</p>
+    <p class="romi-note">Окупаемость подписки на тарифе <strong>Bundle Pro (310 000 ₸/мес)</strong> для команды 5 менеджеров — меньше одного месяца. На одном модуле — окупаемость 2–3 недели на типовом дистрибуторе.</p>
     <div class="romi-disclaimer">
-      ⚠ Прототип-маркер для CEO: текущий текст — вариант B (безопасная формулировка с бенчмарками). Если до 16 мая успеваем замерить эффект на Onset за 30 дней — заменяем на вариант A («По данным пилотных tenants…»). См. <code>AC PRO — Landing Copy.md</code>, блок 4.
+      ⚠ Прототип-маркер для CEO: текущий текст — вариант B (безопасная формулировка с бенчмарками). Если до 16 мая успеваем замерить эффект на Onset за 30 дней — заменяем на вариант A («По данным пилотных tenants…»).
     </div>
     <div class="text-center mt-32">
       <a href="#cta-final" class="btn btn-primary">Посчитать ROMI на ваших данных</a>
@@ -835,32 +1414,32 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
   </div>
 </section>
 
-<!-- Block 5: Demo -->
-<section id="demo" class="alt">
+<!-- Block 5: Demo (common) -->
+<section id="demo">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Демо-сценарий</span>
       <h2>Что происходит на демо за 15 минут</h2>
-      <p class="lead">Без слайдов и общих слов. Только ваши данные и ваш экран.</p>
+      <p class="lead">Без слайдов и общих слов. Только ваши данные и ваш экран. Если у вас только 1С — показываем модуль 1С. Только Б24 — показываем модуль Б24. И то, и другое — показываем Bundle с двусторонней связью.</p>
     </div>
     <div class="demo-steps">
       <div class="demo-step">
         <span class="step-num">Шаг 1</span>
         <div class="step-time">0–3 минуты</div>
         <h3>Показываем боль на ваших данных</h3>
-        <p>Берём топ-100 заказов за последние 30 дней. Считаем: сколько раз товар был «на грани» (остатки &lt; 2 шт), сколько раз заказ был оформлен без сопутки. Цифры — на вашем экране.</p>
+        <p>Берём топ-100 заказов / сделок за последние 30 дней. Считаем потерянные заказы, упущенные сделки, разлёт маржи. Цифры — на вашем экране.</p>
       </div>
       <div class="demo-step">
         <span class="step-num">Шаг 2</span>
         <div class="step-time">3–10 минут</div>
         <h3>Открываем свежий заказ → +30% к чеку при вас</h3>
-        <p>Менеджер открывает заказ, AC PRO в боковой панели предлагает 3 аналога и 5 сопутки. Выбираем нужное в 2 клика. Видите чек до и после.</p>
+        <p>Менеджер открывает заказ в 1С, AC PRO в боковой панели предлагает 3 аналога и 5 сопутки. РОП в Б24 видит маржу и зависшие сделки. Выбираем нужное в 2 клика.</p>
       </div>
       <div class="demo-step">
         <span class="step-num">Шаг 3</span>
         <div class="step-time">10–15 минут</div>
-        <h3>Считаем ROMI на ваших объёмах</h3>
-        <p>Берём вашу выручку и команду менеджеров — пересчитываем эффект. Если интересно — подписываем LOI на пилот со скидкой −15% за фиксацию цены.</p>
+        <h3>Считаем ROMI и подписываем LOI</h3>
+        <p>Берём вашу выручку, команду менеджеров, наличие 1С/Б24 — пересчитываем эффект. Если интересно — подписываем LOI на пилот.</p>
       </div>
     </div>
     <div class="text-center mt-32">
@@ -869,108 +1448,35 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
   </div>
 </section>
 
-<!-- Block 6: Pricing -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Тарифы</span>
-      <h2>Тарифы и условия</h2>
-      <p class="lead">Два модуля — одна подписка. Без скрытых платежей. Без длинных контрактов. Trial 14 дней — бесплатно.</p>
-    </div>
-    <div class="price-grid">
-      <!-- Trial -->
-      <div class="price-card">
-        <div class="price-tier">Trial</div>
-        <div class="price-amount">0 ₸</div>
-        <div class="price-per">14 дней бесплатно</div>
-        <ul class="price-features">
-          <li class="module-line"><span class="lbl">Модуль 1С</span><span class="val">базовый: аналоги + сопутка</span></li>
-          <li class="module-line disabled"><span class="lbl">Модуль Битрикс24</span><span class="val">—</span></li>
-          <li><span>Подсказки/мес</span><span class="v">100</span></li>
-          <li><span>Пользователей</span><span class="v">1 менеджер</span></li>
-          <li><span>Поддержка</span><span class="v">email</span></li>
-        </ul>
-        <button class="btn btn-secondary" onclick="bookDemo()">Начать бесплатно</button>
-      </div>
-      <!-- Starter -->
-      <div class="price-card">
-        <div class="price-tier">Starter</div>
-        <div class="price-amount">75 000 ₸</div>
-        <div class="price-per">в месяц · только 1С</div>
-        <ul class="price-features">
-          <li class="module-line"><span class="lbl">Модуль 1С</span><span class="val">полный: аналоги + сопутка + поиск + маржа</span></li>
-          <li class="module-line disabled"><span class="lbl">Модуль Битрикс24</span><span class="val">— (доступен с тарифа Pro)</span></li>
-          <li><span>Подсказки/мес</span><span class="v">до 1 000</span></li>
-          <li><span>Пользователей</span><span class="v">1 модератор + 1 менеджер</span></li>
-          <li><span>Поддержка</span><span class="v">email</span></li>
-        </ul>
-        <button class="btn btn-secondary" onclick="bookDemo()">Купить Starter</button>
-      </div>
-      <!-- Pro (featured) -->
-      <div class="price-card featured">
-        <div class="price-tier">Pro</div>
-        <div class="price-amount">220 000 ₸</div>
-        <div class="price-per">в месяц · 1С + Б24</div>
-        <ul class="price-features">
-          <li class="module-line"><span class="lbl">Модуль 1С</span><span class="val">полный + ИИ-подсказка по истории + скрипты</span></li>
-          <li class="module-line"><span class="lbl">Модуль Битрикс24</span><span class="val">базовый: дашборд РОПа + авто-задачи</span></li>
-          <li><span>Подсказки/мес</span><span class="v">до 10 000</span></li>
-          <li><span>Пользователей</span><span class="v">до 5</span></li>
-          <li><span>Поддержка</span><span class="v">email + чат</span></li>
-        </ul>
-        <button class="btn btn-primary" onclick="bookDemo()">Купить Pro</button>
-      </div>
-      <!-- Enterprise -->
-      <div class="price-card">
-        <div class="price-tier">Enterprise</div>
-        <div class="price-amount">от 550 000 ₸</div>
-        <div class="price-per">в месяц · 1С + Б24 Pro</div>
-        <ul class="price-features">
-          <li class="module-line"><span class="lbl">Модуль 1С</span><span class="val">полный + кастом-модули под вашу 1С</span></li>
-          <li class="module-line"><span class="lbl">Модуль Битрикс24</span><span class="val">полный: карта рентабельности + сегментация + уведомления</span></li>
-          <li><span>Подсказки/мес</span><span class="v">без лимитов</span></li>
-          <li><span>Пользователей</span><span class="v">без лимитов</span></li>
-          <li><span>White-label · SLA</span><span class="v">+</span></li>
-          <li><span>Поддержка</span><span class="v">dedicated</span></li>
-        </ul>
-        <button class="btn btn-secondary" onclick="bookDemo()">Запросить КП</button>
-      </div>
-    </div>
-    <div class="price-note">
-      <strong>LOI до 30 июня 2026</strong> — скидка <strong>−15%</strong> на первые 12 месяцев + бесплатная установка обоих модулей.
-    </div>
-  </div>
-</section>
-
-<!-- Block 7: Who -->
+<!-- Block 7: Who (common) -->
 <section id="who" class="alt">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Кому подходит</span>
       <h2>Кому AC PRO принесёт деньги в первый месяц</h2>
-      <p class="lead">Простой чек-лист. Если 4 из 5 пунктов — «да», окупится за 30 дней.</p>
+      <p class="lead">Подходит, если хотя бы 3 из 4 пунктов — «да». Битрикс24 и 1С — на выбор: одна из систем достаточно для одного модуля, обе — для Bundle.</p>
     </div>
     <div class="who-grid">
       <ul class="checklist">
-        <li><span class="check">✓</span><span>B2B-дистрибутор на <strong>1С УТ 11.5+</strong> (стройматериалы, фарма, автозапчасти, электротехника, КИПиА, расходники)</span></li>
+        <li><span class="check">✓</span><span>B2B-дистрибутор: стройматериалы, фарма, автозапчасти, электротехника, КИПиА, расходники</span></li>
         <li><span class="check">✓</span><span>Команда продаж <strong>от 3 менеджеров</strong> с выделенным РОПом</span></li>
-        <li><span class="check">✓</span><span><strong>800+ активных SKU</strong> в каталоге</span></li>
-        <li><span class="check">✓</span><span>Боль с потерянными заказами «нет товара на складе» — хотя бы 1 раз в неделю</span></li>
-        <li><span class="check">✓</span><span><strong>Битрикс24 уже используется</strong> для ведения сделок (для модуля Б — желательно, для модуля 1С — не обязательно)</span></li>
+        <li><span class="check">✓</span><span><strong>800+ активных SKU</strong> в каталоге (для модуля 1С) и/или <strong>200+ сделок в месяц</strong> в Б24 (для модуля Б24)</span></li>
+        <li><span class="check">✓</span><span>Хотя бы одна из систем: <strong>1С УТ 11.5+</strong> (для модуля 1С) или <strong>Битрикс24</strong> (для модуля Б24). Обе — для Bundle</span></li>
       </ul>
       <aside class="not-fit">
         <h3>Кому НЕ подходит</h3>
         <ul>
           <li>Розничные сети и B2C — нет интеграции с кассами и витриной</li>
-          <li>Производители с уникальной номенклатурой &lt; 200 SKU — мало данных для обучения модели</li>
-          <li>1С Бухгалтерия / 1С УНФ / самописная конфигурация — на фазе 1 поддерживаем только 1С УТ 11.5+. Самописные — обсуждаем индивидуально на Enterprise</li>
+          <li>Производители с уникальной номенклатурой &lt; 200 SKU — мало данных для обучения модели аналогов</li>
+          <li>Компании без 1С УТ и без Битрикс24 — нет точки внедрения. Сначала внедрите хотя бы одну CRM/учётную систему</li>
+          <li>1С Бухгалтерия / 1С УНФ / самописная 1С — на фазе 1 поддерживаем только 1С УТ 11.5+. Самописные — Enterprise с адаптером</li>
         </ul>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- Block 8: FAQ -->
+<!-- Block 8: FAQ (common) -->
 <section id="faq">
   <div class="container">
     <div class="section-head text-center" style="margin:0 auto">
@@ -980,7 +1486,32 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
     </div>
     <div class="faq">
       <details>
-        <summary>1. Безопасность данных. Куда уходят наши заказы и номенклатура?</summary>
+        <summary>1. У нас нет Битрикс24, только 1С. Какой вариант брать?</summary>
+        <div class="answer">
+          <p>Берите <strong>AC PRO для 1С</strong> — отдельный модуль от 75 000 ₸/мес. Дашборд РОПа в Битрикс24 вам не нужен, потому что Битрикс24 у вас не используется. Все эффекты от модуля 1С (аналоги, сопутка, маржа, поиск) вы получите без Б24.</p>
+          <p>Если в будущем внедрите Битрикс24 — добавите модуль Б24 в любой момент и автоматически перейдёте на тариф Bundle с приоритетной поддержкой и бесплатным онбордингом.</p>
+        </div>
+      </details>
+      <details>
+        <summary>2. У нас есть Битрикс24, но нет 1С (или 1С другая). Можно ли взять только модуль Б24?</summary>
+        <div class="answer">
+          <p>Да. <strong>AC PRO для Битрикс24</strong> — отдельный модуль от 55 000 ₸/мес. Работает с любой версией Битрикс24 (облако и коробка). Получаете: дашборд упущенных сделок, карту рентабельности менеджеров, авто-задачи на «поднять контакт», сегментацию клиентов по марже.</p>
+          <p>Маржу мы считаем из данных Б24 (сумма сделки, скидка) — если у вас в Б24 нет данных о себестоимости, маржа будет считаться приближённо по средней по сегменту. Точная маржа в реальном времени — это связка 1С + Б24 в тарифе Bundle.</p>
+        </div>
+      </details>
+      <details>
+        <summary>3. Чем Bundle лучше двух отдельных модулей? Скидка какая?</summary>
+        <div class="answer">
+          <p><strong>Денежной скидки за Bundle нет.</strong> Цена Bundle = сумма цен 1С-only + Б24-only. Это честно: мы не делаем «акций» и не торгуем по схеме «купи оба — получи скидку».</p>
+          <p>Value Bundle — в плюшках, которые отдельно стоят денег:</p>
+          <p><strong>🚀 Приоритетная техподдержка SLA 4 часа</strong> — вместо 24 часов на одиночных модулях. Эквивалент платного SLA-плана ≈ 40 000 ₸/мес.</p>
+          <p><strong>🎓 Онбординг отдела продаж бесплатно</strong> — двухчасовая онлайн-сессия для менеджеров и РОПа. Эквивалент разовой услуги ≈ 150 000 ₸.</p>
+          <p><strong>↺ Двусторонняя связь 1С ↔ Б24</strong> — эксклюзив Bundle. Сделки и заказы автоматически связаны без дублей и сверок. Доступно только если оба модуля у одного клиента.</p>
+          <p><strong>📈 Единая аналитика «менеджер → сделка → P&L»</strong> — в дашборде Б24 видна фактическая маржа из 1С. Полная картина бизнеса в одном окне.</p>
+        </div>
+      </details>
+      <details>
+        <summary>4. Безопасность данных. Куда уходят наши заказы и номенклатура?</summary>
         <div class="answer">
           <p>Данные обрабатываются по модели <strong>multi-tenancy с изоляцией по tenant_id</strong>. Ваш контур в облаке AC PRO физически отделён от других клиентов на уровне базы данных (PostgreSQL Row-Level Security). Передача — только по HTTPS/TLS 1.3. Доступ к продакшен-данным — только у двух DevOps-инженеров AC PRO под двухфакторкой и с журналированием действий.</p>
           <p>Что <strong>не</strong> уходит к нам: цены закупки, маржа, ФОТ, личные данные клиентов (ФИО, телефоны). Мы работаем с обезличенными ID товаров и фактом продажи. Договор на обработку ПДн подписываем по форме РК (закон «О персональных данных и их защите» от 21.05.2013 № 94-V).</p>
@@ -988,69 +1519,57 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
         </div>
       </details>
       <details>
-        <summary>2. Сколько занимает внедрение и что нужно от нас?</summary>
+        <summary>5. Сколько занимает внедрение и что нужно от нас?</summary>
         <div class="answer">
           <p><strong>Базовый запуск — 2–4 недели</strong>, разбито на три фазы:</p>
-          <p><strong>Неделя 1.</strong> Подключение адаптера к вашей 1С УТ (выгрузка истории продаж за 12–24 мес, справочник номенклатуры). Со стороны клиента: 1 встреча с вашим 1С-программистом (1–2 часа), доступ к чтению регистров продаж.</p>
-          <p><strong>Неделя 2.</strong> Обучение модели аналогов и сопутки на ваших данных. Со стороны клиента: участие не требуется.</p>
-          <p><strong>Неделя 3–4.</strong> Установка расширения в вашей 1С, обучение менеджеров (1 встреча 60 мин), точечная донастройка справочников.</p>
-          <p>Дальше — переход на Trial или платный тариф. После полного запуска новые товары и связки подтягиваются автоматически.</p>
+          <p><strong>Неделя 1.</strong> Подключение адаптера: к 1С УТ (выгрузка истории за 12–24 мес) и/или к Битрикс24 (через REST API, OAuth-приложение). Со стороны клиента: 1 встреча с вашим 1С-программистом (1–2 часа), либо администратор Б24 даёт доступ.</p>
+          <p><strong>Неделя 2.</strong> Обучение модели на ваших данных. Со стороны клиента: участие не требуется.</p>
+          <p><strong>Неделя 3–4.</strong> Установка расширения в 1С и/или приложения в Б24, обучение пользователей (1 встреча 60 мин, или бесплатный онбординг ОП в Bundle), точечная донастройка.</p>
         </div>
       </details>
       <details>
-        <summary>3. У нас не типовая 1С УТ — самописная конфигурация. Что делать?</summary>
+        <summary>6. У нас не типовая 1С УТ — самописная конфигурация. Что делать?</summary>
         <div class="answer">
-          <p>На фазе 1 мы поддерживаем только <strong>1С УТ 11.5+ (типовая или незначительно доработанная)</strong>. Если у вас самописная или сильно кастомизированная конфигурация — это решается только на тарифе <strong>Enterprise (от 550 000 ₸/мес)</strong>, где мы пишем отдельный адаптер под вашу структуру регистров.</p>
+          <p>На фазе 1 мы поддерживаем только <strong>1С УТ 11.5+ (типовая или незначительно доработанная)</strong>. Если у вас самописная или сильно кастомизированная конфигурация — это решается только на тарифе <strong>Enterprise (от 450 000 ₸/мес для 1С-only или от 770 000 ₸/мес для Bundle)</strong>, где мы пишем отдельный адаптер под вашу структуру регистров.</p>
           <p>Сроки в этом случае больше: 6–10 недель вместо 2–4. До запуска адаптера демонстрационный доступ к панели AC PRO мы покажем на тестовом контуре с типовой УТ.</p>
+          <p>Альтернатива — взять <strong>AC PRO для Битрикс24</strong> в одиночку (от 55 000 ₸/мес). Модуль Б24 не зависит от вашей 1С — работает с любой CRM-конфигурацией Битрикс24.</p>
         </div>
       </details>
       <details>
-        <summary>4. Поддержка. К кому идти, если что-то сломалось?</summary>
+        <summary>7. Поддержка. К кому идти, если что-то сломалось?</summary>
         <div class="answer">
-          <p><strong>Starter:</strong> email-поддержка, ответ в течение 1 рабочего дня.<br>
-          <strong>Pro:</strong> email + чат в Telegram, ответ в течение 4 рабочих часов.<br>
-          <strong>Enterprise:</strong> email + чат + выделенный менеджер по сопровождению, SLA по времени отклика прописывается в договоре (стандарт — 1 час в рабочее время).</p>
-          <p>В стоимость подписки <strong>уже включены</strong>: обновления панели, дообучение модели на ваших данных, мониторинг доступности сервиса 24/7. Дополнительные модули (нормализация номенклатуры, контрагенты по БИН, авто-КП, OCR накладных) — оплачиваются отдельно.</p>
+          <p><strong>Одиночный модуль (1С-only или Б24-only):</strong> email + чат, SLA <strong>24 часа</strong> в рабочее время.</p>
+          <p><strong>Bundle:</strong> приоритетная очередь, SLA <strong>4 часа</strong> в рабочее время. Выделенный канал в Telegram с инженером AC PRO. На Enterprise — индивидуальный SLA в договоре (обычно 1 час).</p>
+          <p>В стоимость подписки <strong>уже включены</strong>: обновления модулей, дообучение модели на ваших данных, мониторинг доступности сервиса 24/7. Дополнительные модули (нормализация номенклатуры, контрагенты по БИН, авто-КП, OCR накладных) — оплачиваются отдельно.</p>
         </div>
       </details>
       <details>
-        <summary>5. А если мы решим отказаться от подписки?</summary>
+        <summary>8. А если мы решим отказаться от подписки?</summary>
         <div class="answer">
           <p>В любой момент. Длинных контрактов нет — оплата помесячно. После расторжения: ваш контур работает до конца оплаченного периода, дальше — отключается. Экспорт всех ваших данных (история подсказок, обученные связки аналогов и сопутки) — выгружаем в CSV/JSON за 24 часа по запросу.</p>
-          <p>LOI со скидкой −15% подписывается на 12 месяцев — досрочный выход не штрафуется, но скидка теряется.</p>
+          <p>Если подписан LOI с фиксацией цены на 12 месяцев — досрочный выход не штрафуется, но скидка по LOI теряется.</p>
         </div>
       </details>
       <details>
-        <summary>6. Гарантируете ROMI? Что, если не сработает?</summary>
+        <summary>9. Гарантируете ROMI? Что, если не сработает?</summary>
         <div class="answer">
           <p>Гарантировать конкретное число процентов — нечестно, у каждого дистрибутора своя структура продаж. Что мы гарантируем:</p>
-          <p><strong>Trial 14 дней — бесплатно.</strong> Если за этот период не увидите ценности — никаких списаний.</p>
-          <p><strong>Открытая аналитика.</strong> Дашборд РОП на тарифе Pro показывает каждое предложение AC PRO и каждую реакцию менеджера. Вы видите эффект в цифрах, а не «на доверии».</p>
-          <p><strong>Если за первый месяц подписки дополнительная выручка от подсказок AC PRO &lt; стоимости тарифа</strong> — вернём оплату полностью. Условие: команда менеджеров реально пользовалась панелью (≥ 60% открытых заказов).</p>
-        </div>
-      </details>
-      <details>
-        <summary>7. Кому AC PRO НЕ подходит?</summary>
-        <div class="answer">
-          <p>Честно:</p>
-          <p><strong>Розничным сетям и B2C-магазинам.</strong> У нас нет интеграции с кассами, маркетплейсами и витринами интернет-магазинов.</p>
-          <p><strong>Производителям с &lt; 200 SKU.</strong> Модели мало данных для обучения связкам — эффект будет слабым.</p>
-          <p><strong>Командам &lt; 3 менеджеров.</strong> Окупаемость растягивается до 3–4 месяцев вместо 1.</p>
-          <p><strong>Компаниям без 1С УТ 11.5+ на тарифах Starter/Pro.</strong> Если у вас 1С Бухгалтерия, УНФ или самописная — только Enterprise с отдельным адаптером.</p>
-          <p>Если хотя бы один из пунктов про вас — лучше не тратить наше и ваше время на демо. Напишите — порекомендуем альтернативу из конкурентов (1С-Рарус, ИТС-обработки).</p>
+          <p><strong>Trial 14 дней — бесплатно</strong> на любом модуле или Bundle. Если за этот период не увидите ценности — никаких списаний.</p>
+          <p><strong>Открытая аналитика.</strong> Каждое предложение AC PRO и каждая реакция менеджера фиксируются. Вы видите эффект в цифрах, а не «на доверии».</p>
+          <p><strong>Money-back за первый месяц.</strong> Если за первый месяц подписки дополнительная выручка от AC PRO &lt; стоимости тарифа — вернём оплату полностью. Условие: команда менеджеров реально пользовалась модулем (≥ 60% открытых заказов или сделок).</p>
         </div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- Block 9: Final CTA + Form -->
+<!-- Block 9: Final CTA + Form (common) -->
 <section id="cta-final" class="cta-final alt">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Следующий шаг</span>
       <h2>Готовы посмотреть на ваших данных?</h2>
-      <p class="lead">Демо за 15 минут. Без презентаций — только ваш экран и реальный заказ из вашей 1С.</p>
+      <p class="lead">Демо за 15 минут. Без презентаций — только ваш экран и реальный заказ / реальная сделка из вашей 1С или Битрикс24.</p>
     </div>
     <div class="cta-grid mt-32">
       <div class="calendly-placeholder">
@@ -1073,6 +1592,16 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
           <input id="company" name="company" type="text" required autocomplete="organization">
         </div>
         <div class="form-field">
+          <label for="systems">Какие системы у вас уже есть *</label>
+          <select id="systems" name="systems" required>
+            <option value="">Выберите вариант</option>
+            <option value="1c-only">Только 1С УТ</option>
+            <option value="b24-only">Только Битрикс24</option>
+            <option value="both">1С УТ + Битрикс24</option>
+            <option value="neither">Ни того, ни другого</option>
+          </select>
+        </div>
+        <div class="form-field">
           <label for="team">Сколько менеджеров продаж в команде *</label>
           <select id="team" name="team" required>
             <option value="">Выберите вариант</option>
@@ -1089,21 +1618,22 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
   </div>
 </section>
 
-<!-- Block 10: Footer -->
+<!-- Footer -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="brand" style="color:#fff;margin-bottom:14px"><span class="mark">A</span> AC PRO</div>
-        <p>AI-помощник продаж: панель в 1С УТ для менеджера + дашборд в Битрикс24 для РОПа. Для B2B-дистрибуторов Казахстана.</p>
+        <p>AI-помощник продаж: модуль для 1С (менеджер) и модуль для Битрикс24 (РОП). Подписка от 55 000 ₸/мес. Для B2B-дистрибуторов Казахстана.</p>
       </div>
       <div class="footer-col">
         <h4>Продукт</h4>
         <ul>
-          <li><a href="#pricing">Тарифы</a></li>
+          <li><a href="#variants" onclick="switchTab('1c')">AC PRO для 1С</a></li>
+          <li><a href="#variants" onclick="switchTab('b24')">AC PRO для Б24</a></li>
+          <li><a href="#variants" onclick="switchTab('bundle')">Bundle 1С + Б24</a></li>
           <li><a href="#demo">Демо</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#what">Безопасность</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1133,6 +1663,72 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
 </footer>
 
 <script>
+(function(){
+  var validTabs = ['1c','b24','bundle'];
+  var defaultTab = 'bundle';
+
+  function getActiveFromHash(){
+    var h = (location.hash || '').replace('#','').toLowerCase();
+    return validTabs.indexOf(h) >= 0 ? h : null;
+  }
+
+  function applyTab(name, opts){
+    opts = opts || {};
+    if(validTabs.indexOf(name) < 0) name = defaultTab;
+    document.querySelectorAll('.tab').forEach(function(btn){
+      var sel = btn.getAttribute('data-tab') === name;
+      btn.setAttribute('aria-selected', sel ? 'true' : 'false');
+    });
+    document.querySelectorAll('.tabpanel').forEach(function(panel){
+      panel.classList.toggle('active', panel.id === ('panel-' + name));
+    });
+    if(opts.updateHash){
+      try{
+        history.replaceState(null, '', '#' + name);
+      } catch(e){}
+    }
+    if(opts.scrollToTabs){
+      var el = document.getElementById('variants');
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+
+  window.switchTab = function(name){
+    applyTab(name, {updateHash:true, scrollToTabs:true});
+  };
+
+  // init from hash or default
+  var initial = getActiveFromHash() || defaultTab;
+  applyTab(initial, {updateHash:false, scrollToTabs:false});
+
+  // wire tab buttons
+  document.querySelectorAll('.tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var name = btn.getAttribute('data-tab');
+      applyTab(name, {updateHash:true, scrollToTabs:false});
+    });
+    btn.addEventListener('keydown', function(e){
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+      var idx = tabs.indexOf(btn);
+      if(e.key === 'ArrowRight'){
+        e.preventDefault();
+        var next = tabs[(idx + 1) % tabs.length];
+        next.focus(); next.click();
+      } else if(e.key === 'ArrowLeft'){
+        e.preventDefault();
+        var prev = tabs[(idx - 1 + tabs.length) % tabs.length];
+        prev.focus(); prev.click();
+      }
+    });
+  });
+
+  // listen for hashchange (back/forward buttons or external links to tabs)
+  window.addEventListener('hashchange', function(){
+    var h = getActiveFromHash();
+    if(h){ applyTab(h, {updateHash:false, scrollToTabs:false}); }
+  });
+})();
+
 function bookDemo(){
   alert('Заглушка: тут откроется виджет Calendly после интеграции.\n\nПока что прокрутите вниз к форме-резерву или используйте контакты в футере.');
   document.getElementById('cta-final').scrollIntoView({behavior:'smooth'});
@@ -1140,7 +1736,7 @@ function bookDemo(){
 function handleReserve(e){
   e.preventDefault();
   alert('Заглушка: форма отправит POST на webhook Tilda → Bitrix24 после интеграции.\n\nДанные формы (только в консоль для проверки):');
-  const data = Object.fromEntries(new FormData(e.target));
+  var data = Object.fromEntries(new FormData(e.target));
   console.log('[AC PRO reserve form]', data);
   return false;
 }
